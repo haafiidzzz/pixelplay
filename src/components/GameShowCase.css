@@ -1,0 +1,80 @@
+.game-showcase {
+  padding-top: 15px;
+}
+
+.featured-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #d9d9d9;
+  height: 280px;
+  transition: transform 0.3s ease;
+}
+
+.featured-card:hover {
+  transform: translateY(-5px);
+}
+
+.featured-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.small-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+}
+
+.small-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #d9d9d9;
+  height: 140px;
+  transition: transform 0.3s ease;
+}
+
+.small-card:hover {
+  transform: translateY(-5px);
+}
+
+.small-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tiny-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+}
+
+.tiny-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #d9d9d9;
+  height: 120px;
+  transition: transform 0.3s ease;
+}
+
+.tiny-card:hover {
+  transform: translateY(-5px);
+}
+
+.tiny-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .featured-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .small-grid,
+  .tiny-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

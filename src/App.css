@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  min-height: 100vh;
+  background-color: #4EC5C1;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+main {
+  width: 100%;
+  padding-bottom: 40px;
+}
+
+/* PAKSA navbar + semua section + footer pake lebar identik */
+.navbar,
+.free-to-play,
+.game-showcase,
+.genre-game,
+.whats-pixelplay,
+.footer {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 60px !important;
+  padding-right: 60px !important;
+  box-sizing: border-box !important;
+}
+
+/* Grid-nya full width dalem container */
+.bento-grid,
+.featured-row,
+.small-grid,
+.tiny-grid,
+.genre-grid,
+.footer-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.bento-grid {
+  display: grid !important;
+  grid-template-columns: 1.2fr 1.5fr 1.2fr !important;
+  gap: 15px !important;
+}
+
+.featured-row {
+  display: grid !important;
+  grid-template-columns: 1.2fr 1.5fr 1.2fr !important;
+  gap: 15px !important;
+  margin-bottom: 15px !important;
+}
+
+.small-grid,
+.tiny-grid {
+  margin-bottom: 15px !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #4EC5C1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e0e0e0;
+}
