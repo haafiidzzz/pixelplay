@@ -80,6 +80,7 @@ const SignIn = () => {
             {loading ? 'SIGNING IN...' : 'SIGN IN'}
           </button>
         </form>
+        
 
         <p className="auth-footer">
           Don't have an account?{' '}
