@@ -2,16 +2,49 @@ import { supabase } from '../supabaseClient';
 
 export const authService = {
   // Sign up dengan email & password
-  async signUp({ email, password, username }) {
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: { username },
-      },
-    });
+async signUp({ email, password, username }) {
+
+  // buat auth user
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: { username },
+    },
+  });
+
+  // kalau auth gagal
+  if (error) {
     return { data, error };
-  },
+  }
+
+  // ambil user
+  const user = data?.user;
+
+  // insert ke profiles
+  if (user) {
+
+    const { error: profileError } = await supabase
+      .from('profiles')
+      .insert([
+        {
+          id: user.id,
+          username: username,
+          display_name: username,
+        },
+      ]);
+
+    if (profileError) {
+      console.error(profileError);
+      return {
+        data,
+        error: profileError,
+      };
+    }
+  }
+
+  return { data, error: null };
+},
 
   // Sign in dengan email & password
   async signIn({ email, password }) {

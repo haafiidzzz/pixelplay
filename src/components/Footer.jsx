@@ -36,29 +36,31 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="footer-column">
-          <h4 className="column-title">SUPPORT</h4>
-          <ul className="footer-links">
-            <li><a href="#store">Store</a></li>
-            <li><a href="#new">New Releases</a></li>
-            <li><a href="#top">Top Sellers</a></li>
-            <li><a href="#free">Free to Play</a></li>
-            <li><a href="#deals">Deals & Offers</a></li>
-          </ul>
-        </div>
+        
+  <div className="footer-column">
+  <h4 className="column-title">GAMES</h4>
+  <ul className="footer-links">
+    <li><a href="#arcade">Arcade Games</a></li>
+    <li><a href="#action">Action Games</a></li>
+    <li><a href="#adventure">Adventure Games</a></li>
+    <li><a href="#multiplayer">Multiplayer</a></li>
+    <li><a href="#trending">Trending Games</a></li>
+  </ul>
+</div>
 
-        <div className="footer-column">
-          <h4 className="column-title">SUPPORT</h4>
-          <ul className="footer-links">
-            <li><a href="#store">Store</a></li>
-            <li><a href="#new">New Releases</a></li>
-            <li><a href="#top">Top Sellers</a></li>
-            <li><a href="#free">Free to Play</a></li>
-            <li><a href="#deals">Deals & Offers</a></li>
-          </ul>
-        </div>
-      </div>
-    </footer>
+<div className="footer-column">
+  <h4 className="column-title">COMMUNITY</h4>
+  <ul className="footer-links">
+    <li><a href="#leaderboard">Leaderboard</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#discord">Discord Server</a></li>
+    <li><a href="#support">Help Center</a></li>
+  </ul>
+    </div>
+
+    </div>
+  </footer>
   );
 };
 

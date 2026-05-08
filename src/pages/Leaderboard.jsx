@@ -74,12 +74,12 @@ const Leaderboard = () => {
           {leaderboard.map((player, index) => {
             const rank = index + 1;
             const medal = getMedal(rank);
-            const isCurrentUser = user?.id === player.id;
+            const isCurrentUser = user?.id === player.user_id;
             const isTop3 = rank <= 3;
 
             return (
               <div
-                key={player.id}
+                key={player.user_id}
                 className={`leaderboard-item ${isCurrentUser ? 'current-user' : ''} ${isTop3 ? 'top-three' : ''}`}
               >
                 <div className="rank-section">
@@ -107,9 +107,9 @@ const Leaderboard = () => {
                 </div>
 
                 <div className="points-section">
-                  <span className="points-value">
-                    {(player.score || 0).toLocaleString()}
-                  </span>
+                 <span className="points-value">
+  {(player.total_points || 0).toLocaleString()}
+</span>
                   <span className="points-label">PTS</span>
                 </div>
               </div>
