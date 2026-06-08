@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { shopService } from '../services/shopService';
+import { supabase } from '../supabaseClient';
 import './GameShowcase.css';
 
 const PAYMENT_METHODS = [
@@ -12,6 +13,14 @@ const PAYMENT_METHODS = [
   { icon: '🔵', name: 'DANA' },
   { icon: '🏪', name: 'Indomaret' },
 ];
+
+const getGameImageUrl = (game, fallbackSize) => {
+  if (!game?.thumbnail) {
+    return `https://placehold.co/${fallbackSize}/1a1a2e/00ff88?text=${encodeURIComponent(game?.nama || 'Game')}`;
+  }
+  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+  return `${supabaseUrl}/storage/v1/object/public/game-thumbnail/${game.thumbnail}`;
+};
 
 const GameShowcase = () => {
   const { user } = useAuth();
@@ -98,7 +107,7 @@ const GameShowcase = () => {
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
             <div className="modal-game-img">
               <img
-                src={`https://placehold.co/300x160/1a1a2e/00ff88?text=${encodeURIComponent(confirmGame.nama)}`}
+                src={getGameImageUrl(confirmGame, '300x160')}
                 alt={confirmGame.nama}
               />
             </div>
@@ -151,7 +160,7 @@ const GameShowcase = () => {
           <div className="featured-row">
             {featured.map((game) => (
               <div key={game.id} className="featured-card game-card">
-                <img src={`https://placehold.co/400x380/1a1a2e/00ff88?text=${encodeURIComponent(game.nama)}`} alt={game.nama} />
+                <img src={getGameImageUrl(game, '400x380')} alt={game.nama} />
                 <div className="game-card-overlay">
                   <p className="game-card-name">{game.nama}</p>
                   <BuyButton game={game} />
@@ -162,7 +171,7 @@ const GameShowcase = () => {
           <div className="small-grid">
             {small.map((game) => (
               <div key={game.id} className="small-card game-card">
-                <img src={`https://placehold.co/200x140/1a1a2e/00ff88?text=${encodeURIComponent(game.nama)}`} alt={game.nama} />
+                <img src={getGameImageUrl(game, '200x140')} alt={game.nama} />
                 <div className="game-card-overlay">
                   <p className="game-card-name">{game.nama}</p>
                   <BuyButton game={game} />
@@ -173,7 +182,7 @@ const GameShowcase = () => {
           <div className="tiny-grid">
             {tiny.map((game) => (
               <div key={game.id} className="tiny-card game-card">
-                <img src={`https://placehold.co/200x120/1a1a2e/00ff88?text=${encodeURIComponent(game.nama)}`} alt={game.nama} />
+                <img src={getGameImageUrl(game, '200x120')} alt={game.nama} />
                 <div className="game-card-overlay">
                   <p className="game-card-name">{game.nama}</p>
                   <BuyButton game={game} />
