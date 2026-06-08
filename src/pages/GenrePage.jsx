@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { shopService } from '../services/shopService';
+import { supabase } from '../supabaseClient'; 
 import './GenrePage.css';
 
 const GENRE_MAP = {
@@ -13,6 +14,13 @@ const GENRE_MAP = {
   strategy:  { label: 'Strategy',  icon: '♟️' },
   horror:    { label: 'Horror',    icon: '👻' },
   arcade:    { label: 'Arcade',    icon: '🕹️' },
+};
+
+const getGameImageUrl = (game) => {
+  if (!game?.thumbnail) {
+    return `https://placehold.co/300x400/1a1a2e/00ff88?text=${encodeURIComponent(game?.nama || 'Game')}`;
+  }
+  return `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/game-thumbnail/${game.thumbnail}`;
 };
 
 const GenrePage = () => {
@@ -33,18 +41,33 @@ const GenrePage = () => {
 
   const fetchData = async () => {
     setLoading(true);
-    const { data: allGames } = await shopService.getAllGames();
 
-    // Filter game berdasarkan slug genre (cocokkan ke kolom genre di DB kalau ada, fallback semua)
-    const filtered = (allGames || []).filter(
-      (g) => g.genre?.toLowerCase() === slug || g.slug?.includes(slug)
-    );
-    setGames(filtered.length > 0 ? filtered : allGames || []);
+    try {
+      const { data: relationData, error } = await supabase
+        .from('game_genres')
+        .select(`
+          games (*),
+          genres!inner (slug)
+        `)
+        .eq('genres.slug', slug);
+
+      if (error) throw error;
+
+      const fetchedGames = relationData
+        ?.map((item) => item.games)
+        .filter((g) => g !== null) || [];
+        
+      setGames(fetchedGames);
+    } catch (error) {
+      console.error("Gagal mengambil data game berdasarkan genre:", error.message);
+      setGames([]);
+    }
 
     if (user) {
       const { data: purchases } = await shopService.getUserPurchases(user.id);
       setOwnedIds(new Set((purchases || []).map((p) => p.game_id)));
     }
+    
     setLoading(false);
   };
 
@@ -92,39 +115,45 @@ const GenrePage = () => {
         <div className="genre-state">Loading...</div>
       ) : (
         <div className="genre-page-grid">
-          {games.map((game) => {
-            const owned = ownedIds.has(game.id);
-            return (
-              <div key={game.id} className="genre-game-card">
-                <div className="genre-game-cover">
-                  <img
-                    src={`https://placehold.co/300x400/1a1a2e/00ff88?text=${encodeURIComponent(game.nama)}`}
-                    alt={game.nama}
-                  />
-                  {owned && <div className="genre-owned-badge">✓ OWNED</div>}
-                </div>
-                <div className="genre-game-info">
-                  <h3>{game.nama}</h3>
-                  <div className="genre-game-footer">
-                    <span className="genre-game-price">
-                      {game.price === 0 ? 'FREE' : `Rp ${Number(game.price).toLocaleString('id-ID')}`}
-                    </span>
-                    {owned ? (
-                      <button className="btn-owned" disabled>Dimiliki</button>
-                    ) : (
-                      <button
-                        className="btn-buy"
-                        onClick={() => handleBuy(game)}
-                        disabled={buyingId === game.id}
-                      >
-                        {buyingId === game.id ? '...' : 'Beli'}
-                      </button>
-                    )}
+          {games.length === 0 ? (
+            <p className="genre-state" style={{ gridColumn: '1 / -1', color: '#aaa', textAlign: 'center', padding: '3rem' }}>
+              Tidak ada game dalam genre ini.
+            </p>
+          ) : (
+            games.map((game) => {
+              const owned = ownedIds.has(game.id);
+              return (
+                <div key={game.id} className="genre-game-card">
+                  <div className="genre-game-cover">
+                    <img
+                      src={getGameImageUrl(game)}
+                      alt={game.nama}
+                    />
+                    {owned && <div className="genre-owned-badge">✓ OWNED</div>}
+                  </div>
+                  <div className="genre-game-info">
+                    <h3>{game.nama}</h3>
+                    <div className="genre-game-footer">
+                      <span className="genre-game-price">
+                        {game.price === 0 ? 'FREE' : `Rp ${Number(game.price).toLocaleString('id-ID')}`}
+                      </span>
+                      {owned ? (
+                        <button className="btn-owned" disabled>Dimiliki</button>
+                      ) : (
+                        <button
+                          className="btn-buy"
+                          onClick={() => handleBuy(game)}
+                          disabled={buyingId === game.id}
+                        >
+                          {buyingId === game.id ? '...' : 'Beli'}
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })
+          )}
         </div>
       )}
     </div>

@@ -1,5 +1,8 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '../supabaseClient'; 
 import './GenreGame.css';
+
 import actionIcon from '../assets/ActionG.gif';
 import adventureIcon from '../assets/adventureG.gif';
 import rpgIcon from '../assets/rpgG.gif';
@@ -22,6 +25,31 @@ const genres = [
 
 const GenreGame = () => {
   const navigate = useNavigate();
+  const [gameCounts, setGameCounts] = useState({});
+
+  useEffect(() => {
+    const fetchGameCounts = async () => {
+      const { data, error } = await supabase
+        .from('genres')
+        .select(`
+          slug,
+          game_genres ( game_id )
+        `);
+
+      if (!error && data) {
+        const counts = {};
+        // Memetakan jumlah game ke dalam object berdasarkan slug
+        data.forEach((genre) => {
+          counts[genre.slug] = genre.game_genres ? genre.game_genres.length : 0;
+        });
+        setGameCounts(counts);
+      } else {
+        console.error("Gagal mengambil jumlah game:", error);
+      }
+    };
+
+    fetchGameCounts();
+  }, []);
 
   return (
     <section className="genre-game">
@@ -37,6 +65,19 @@ const GenreGame = () => {
           >
             <div className="genre-icon" aria-hidden="true" />
             <div className="genre-label">{genre.label}</div>
+            
+            {/* Menampilkan jumlah game dari Supabase */}
+            <div className="genre-count" style={{ 
+              color: '#fff', 
+              fontSize: '0.85rem', 
+              marginTop: '4px', 
+              position: 'relative', 
+              zIndex: 2,
+              opacity: 0.9 
+            }}>
+              {gameCounts[genre.slug] !== undefined ? `${gameCounts[genre.slug]} Games` : '...'}
+            </div>
+
             <div className="genre-glow" />
           </div>
         ))}
