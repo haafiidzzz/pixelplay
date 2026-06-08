@@ -4,7 +4,7 @@
 
 ### Anggota Kelompok
 - Hafidz Ulum Ramadhani
-- Nayakas Shafarrel
+- Nayakas Shafarrel Razaan Nalaprassya
 - Khalil Gibran Al Azhar
 - Sintya Shavna
 
