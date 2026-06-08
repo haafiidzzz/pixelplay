@@ -1,0 +1,145 @@
+.genre-page {
+  min-height: 80vh;
+  padding: 2rem 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.genre-page-header {
+  margin-bottom: 2rem;
+}
+
+.back-btn {
+  background: transparent;
+  border: 1px solid #444;
+  color: #fff;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.65rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s;
+}
+
+.back-btn:hover { border-color: #00ff88; color: #00ff88; }
+
+.genre-page-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.8rem;
+  letter-spacing: 0.1em;
+  margin: 0.5rem 0;
+}
+
+.genre-page-sub {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.genre-state {
+  text-align: center;
+  padding: 3rem;
+  color: #aaa;
+}
+
+.genre-page-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.genre-game-card {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.genre-game-card:hover { transform: translateY(-4px); }
+
+.genre-game-cover {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+
+.genre-game-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.genre-owned-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: #00ff88;
+  color: #000;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.genre-game-info {
+  padding: 0.75rem;
+}
+
+.genre-game-info h3 {
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.genre-game-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.genre-game-price {
+  font-weight: 800;
+  color: #00ff88;
+  font-size: 0.8rem;
+}
+
+.btn-buy {
+  background: #00ff88;
+  color: #000;
+  border: none;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-buy:hover { opacity: 0.85; }
+.btn-buy:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-owned {
+  background: transparent;
+  color: #555;
+  border: 1px solid #333;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  cursor: not-allowed;
+}
+
+.genre-toast {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.genre-toast.success { background: #0d3320; color: #00ff88; border: 1px solid #00ff88; }
+.genre-toast.error   { background: #330d0d; color: #ff6b6b; border: 1px solid #ff6b6b; }

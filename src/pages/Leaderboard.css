@@ -1,0 +1,276 @@
+.leaderboard-page {
+  min-height: 80vh;
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Header */
+.leaderboard-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.leaderboard-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 28px;
+  color: #ffffff;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.leaderboard-subtitle {
+  color: #ffffff;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+/* States: Loading / Error / Empty */
+.leaderboard-state {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 60px 30px;
+  text-align: center;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  color: #555;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-state.error {
+  color: #c0392b;
+}
+
+.leaderboard-state.empty .empty-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.leaderboard-state.empty .empty-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  color: #4EC5C1;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.leaderboard-state.empty .empty-text {
+  color: #777;
+  font-size: 18px;
+}
+
+.retry-btn {
+  margin-top: 20px;
+  background-color: #4EC5C1;
+  color: #ffffff;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.retry-btn:hover {
+  background-color: #3da9a5;
+  transform: translateY(-2px);
+}
+
+/* Leaderboard List */
+.leaderboard-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Leaderboard Item */
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 16px 24px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.leaderboard-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Top 3 special styling */
+.leaderboard-item.top-three {
+  background: linear-gradient(135deg, #ffffff 0%, #f5fdfc 100%);
+  border: 2px solid #4EC5C1;
+}
+
+/* Current user highlight */
+.leaderboard-item.current-user {
+  border: 3px solid #ffd700;
+  background: linear-gradient(135deg, #ffffff 0%, #fffbe6 100%);
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+}
+
+/* Rank Section */
+.rank-section {
+  min-width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.medal {
+  font-size: 36px;
+}
+
+.rank-number {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 16px;
+  color: #888;
+  letter-spacing: 1px;
+}
+
+/* Avatar */
+.avatar-section {
+  flex-shrink: 0;
+}
+
+.user-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #4EC5C1;
+}
+
+/* User Info */
+.user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.user-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  color: #333;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.you-badge {
+  background-color: #ffd700;
+  color: #333;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  letter-spacing: 1px;
+}
+
+.user-username {
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  color: #888;
+}
+
+/* Level Badge */
+.level-badge {
+  display: inline-block;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  letter-spacing: 1px;
+  margin-top: 4px;
+  width: fit-content;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Points Section */
+.points-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  min-width: 100px;
+}
+
+.points-value {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  color: #4EC5C1;
+  letter-spacing: 1px;
+}
+
+.points-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: #888;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .leaderboard-page {
+    padding: 30px 15px;
+  }
+
+  .leaderboard-title {
+    font-size: 20px;
+  }
+
+  .leaderboard-subtitle {
+    font-size: 16px;
+  }
+
+  .leaderboard-item {
+    padding: 12px 16px;
+    gap: 12px;
+  }
+
+  .rank-section {
+    min-width: 40px;
+  }
+
+  .medal {
+    font-size: 28px;
+  }
+
+  .rank-number {
+    font-size: 12px;
+  }
+
+  .user-avatar {
+    width: 44px;
+    height: 44px;
+  }
+
+  .user-name {
+    font-size: 11px;
+  }
+
+  .points-value {
+    font-size: 14px;
+  }
+
+  .points-label {
+    font-size: 8px;
+  }
+
+  .points-section {
+    min-width: 70px;
+  }
+}

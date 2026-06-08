@@ -1,0 +1,147 @@
+.auth-page {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.auth-container {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 50px 45px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.auth-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 28px;
+  color: #4EC5C1;
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+  margin-bottom: 35px;
+  font-family: 'VT323', monospace;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  color: #4EC5C1;
+  letter-spacing: 1px;
+}
+
+.form-group input {
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: 'VT323', monospace;
+  color: #333;
+  background-color: #f9f9f9;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+  border-color: #4EC5C1;
+  background-color: #ffffff;
+}
+
+.form-group input::placeholder {
+  color: #aaa;
+}
+
+.message {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'VT323', monospace;
+  text-align: center;
+}
+
+.message-success {
+  background-color: #e8f8f5;
+  color: #1a7f5a;
+  border: 1px solid #4EC5C1;
+}
+
+.message-error {
+  background-color: #fdecec;
+  color: #c0392b;
+  border: 1px solid #e74c3c;
+}
+
+.auth-btn {
+  background-color: #4EC5C1;
+  color: #ffffff;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 13px;
+  padding: 16px 24px;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+}
+
+.auth-btn:hover:not(:disabled) {
+  background-color: #3da9a5;
+  transform: translateY(-2px);
+}
+
+.auth-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 25px;
+  color: #666;
+  font-family: 'VT323', monospace;
+  font-size: 17px;
+}
+
+.auth-link {
+  color: #4EC5C1;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  text-decoration: none;
+  margin-left: 5px;
+  letter-spacing: 1px;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 35px 25px;
+  }
+
+  .auth-title {
+    font-size: 22px;
+  }
+}
