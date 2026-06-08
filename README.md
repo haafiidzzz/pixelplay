@@ -1,16 +1,76 @@
-# React + Vite
+# 🎮 PixelPlay
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Kelompok 14
 
-Currently, two official plugins are available:
+### Anggota Kelompok
+- Hafidz Ulum Ramadhani
+- Nayakas Shafarrel Razaan Nalaprassya
+- Khalil Gibran Al Azhar
+- Sintya Shavna
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 📖 Deskripsi Proyek
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**PixelPlay** adalah sebuah platform game berbasis web yang dirancang untuk memberikan pengalaman bermain game yang mudah, menarik, dan interaktif. Melalui PixelPlay, pengguna dapat memainkan berbagai game secara langsung melalui browser tanpa perlu melakukan instalasi tambahan.
 
-## Expanding the ESLint configuration
+Selain sebagai platform bermain game, PixelPlay juga menyediakan fitur kompetitif dan sistem penghargaan untuk meningkatkan keterlibatan pengguna.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ✨ Fitur Utama
+
+### 🎮 Play Games
+Pengguna dapat memainkan berbagai game yang tersedia pada platform secara langsung melalui website.
+
+### 🏆 Achievement System
+Setiap pengguna dapat memperoleh achievement berdasarkan pencapaian tertentu saat bermain game. Achievement berfungsi sebagai bentuk penghargaan atas progres dan kemampuan pemain.
+
+### 📊 Leaderboard
+PixelPlay menyediakan leaderboard yang menampilkan peringkat pemain berdasarkan skor atau pencapaian mereka. Fitur ini memungkinkan pengguna untuk bersaing dengan pemain lainnya.
+
+### 🛒 Game Store
+Pengguna dapat membeli game yang tersedia pada platform. Game yang telah dibeli akan tersimpan pada akun pengguna sehingga dapat diakses kembali kapan saja.
+
+### 👤 User Account
+Pengguna dapat membuat akun, masuk ke sistem, serta mengelola profil dan aktivitas mereka di dalam platform.
+
+---
+
+## 🛠️ Teknologi yang Digunakan
+
+### Frontend
+- React.js
+- Tailwind CSS
+- JavaScript
+
+### Backend
+- Node.js
+- Express.js
+
+### Database
+- Supabase
+
+### Version Control
+- Git
+- GitHub
+
+---
+
+## 🎯 Tujuan Proyek
+
+PixelPlay dikembangkan untuk menyediakan platform hiburan digital yang menggabungkan:
+- Pengalaman bermain game berbasis web.
+- Sistem pencapaian (achievement).
+- Kompetisi antar pemain melalui leaderboard.
+- Marketplace sederhana untuk pembelian game.
+
+Dengan adanya fitur-fitur tersebut, PixelPlay tidak hanya menjadi tempat bermain game, tetapi juga menjadi wadah bagi pengguna untuk berkompetisi dan mengembangkan koleksi game mereka.
+
+---
+
+## 🚀 Cara Menjalankan Proyek
+
+### Clone Repository
+```bash
+git clone <repository-url>
