@@ -2,8 +2,50 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { shopService } from '../services/shopService';
-import { supabase } from '../supabaseClient';
+import subwaySurf from '../assets/subway surf.gif';
+import doom from '../assets/Doom.gif';
+import princePersia from '../assets/princepersia.gif';
+import tombRaider from '../assets/tombraider.gif';
+import simcity from '../assets/simcity.gif';
+import warhammer from '../assets/twwarhammer.gif';
+import re4 from '../assets/re4.gif';
+import batman from '../assets/batmansad.gif';
+import octopath from '../assets/otrav.gif';
+import chronoTrigger from '../assets/ctrigger.gif';
+import onimusha from '../assets/onimusha.gif';
+import harvest from '../assets/harvest.gif';
+import blockBlast from '../assets/bb.gif';
+import temple from '../assets/temple.gif';
+import slendrina from '../assets/slendrina.gif';
 import './GameShowcase.css';
+
+const GAME_IMAGES = {
+  'Subway Surfers': subwaySurf,
+  'Doom': doom,
+  'Prince of Persia': princePersia,
+  'Tomb Raider': tombRaider,
+  'Simcity': simcity,
+  'Total War: Warhammer': warhammer,
+  'Resident Evil 4': re4,
+  'Batman: Arkham City': batman,
+  'Octopath Traveler': octopath,
+  'Chrono Trigger': chronoTrigger,
+  'Onimusha': onimusha,
+  'Harvest Moon': harvest,
+  'Block Blast': blockBlast,
+  'Temple Run': temple,
+  'Slendrina': slendrina,
+  // Mobile Legends belum ada GIF-nya, pakai placeholder
+};
+
+const getGameImageUrl = (game, fallbackSize) => {
+  if (GAME_IMAGES[game?.nama]) return GAME_IMAGES[game.nama];
+  if (game?.thumbnail) {
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+    return `${supabaseUrl}/storage/v1/object/public/game-thumbnail/${game.thumbnail}`;
+  }
+  return `https://placehold.co/${fallbackSize}/1a1a2e/00ff88?text=${encodeURIComponent(game?.nama || 'Game')}`;
+};
 
 const PAYMENT_METHODS = [
   { icon: '💳', name: 'Kartu Kredit' },
@@ -13,14 +55,6 @@ const PAYMENT_METHODS = [
   { icon: '🔵', name: 'DANA' },
   { icon: '🏪', name: 'Indomaret' },
 ];
-
-const getGameImageUrl = (game, fallbackSize) => {
-  if (!game?.thumbnail) {
-    return `https://placehold.co/${fallbackSize}/1a1a2e/00ff88?text=${encodeURIComponent(game?.nama || 'Game')}`;
-  }
-  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-  return `${supabaseUrl}/storage/v1/object/public/game-thumbnail/${game.thumbnail}`;
-};
 
 const GameShowcase = () => {
   const { user } = useAuth();
