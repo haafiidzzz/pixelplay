@@ -10,7 +10,7 @@ const WhatsPixelPlay = () => {
           <div className="info-left">
             <p className="info-tagline">Your Ultimate<br />Gaming Universe</p>
             <p className="info-desc">
-              PixelPlay adalah platform gaming all-in-one tempat kamu bisa menemukan, membeli, dan memainkan ratusan game dari berbagai genre. Dari aksi penuh adrenalin hingga puzzle yang mengasah otak — semua ada di sini.
+              PixelPlay adalah platform cloud gaming revolusioner tempat kamu bisa memiliki dan memainkan ratusan game terbaik tanpa batas. Beli sekali, mainkan selamanya—langsung dari browser kamu! Lupakan proses unduhan yang memakan waktu atau kapasitas harddisk yang penuh. Di PixelPlay, semua game berjalan di server awan super cepat kami. Cukup pilih game favoritmu, selesaikan pembelian, dan klik Play untuk langsung masuk ke dalam petualangan seru secara online!
             </p>
             <div className="info-stats">
               <div className="stat-item">
@@ -29,7 +29,7 @@ const WhatsPixelPlay = () => {
           </div>
 
           <div className="info-right">
-            <p className="info-right-title">Genre yang Tersedia</p>
+            <p className="info-right-title">Genre</p>
             <div className="genre-tags">
               {[
                 { icon: '⚔️', label: 'Action' },
@@ -49,10 +49,10 @@ const WhatsPixelPlay = () => {
 
             <p className="info-right-title" style={{ marginTop: '1.5rem' }}>Fitur Unggulan</p>
             <ul className="feature-list">
-              <li>🏆 Achievement & Leaderboard system</li>
-              <li>🛒 Beli game langsung dari Home</li>
-              <li>📚 Library game pribadi</li>
-              <li>🎮 Ratusan game dari berbagai genre</li>
+              <li>☁️ Instant Cloud Play: Mainkan game favoritmu instan lewat cloud streaming tanpa perlu mengunduh atau memasang file apa pun.</li>
+              <li>🛒 One-Time Purchase: Cukup beli game impianmu sekali, dan game tersebut akan tersimpan di Library pribadi kamu selamanya.</li>
+              <li>🏆 Achievement & Leaderboard System: Buktikan kemampuanmu dan bersainglah dengan gamer lain di seluruh dunia.</li>
+              <li>🖥️ Ramah Spesifikasi: Tidak perlu device gaming mahal. Selama kamu terhubung ke internet, game seberat apa pun akan berjalan dengan lancar!</li>
             </ul>
           </div>
         </div>

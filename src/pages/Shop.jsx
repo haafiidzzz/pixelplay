@@ -33,14 +33,36 @@ const Shop = () => {
       setMessage({ type: 'error', text: 'Login dulu untuk beli game!' });
       return;
     }
+
     setBuyingId(game.id);
-    const result = await shopService.purchaseGame(user.id, game.id, game.price);
-    if (result.success) {
-      setOwnedIds((prev) => new Set([...prev, game.id]));
-      setMessage({ type: 'success', text: `✅ ${game.nama} berhasil dibeli!` });
+
+    // LOGIKA PEMBELIAN BARU:
+    if (game.price === 0) {
+      // 1. Jika harga 0 (Gratis), langsung masukkan ke database sebagai berhasil
+      const result = await shopService.purchaseGame(user.id, game.id, 0);
+      
+      if (result.success) {
+        setOwnedIds((prev) => new Set([...prev, game.id]));
+        setMessage({ type: 'success', text: `✅ ${game.nama} berhasil ditambahkan ke Library!` });
+      } else {
+        setMessage({ type: 'error', text: 'Gagal mengklaim game gratis.' });
+      }
     } else {
-      setMessage({ type: 'error', text: result.message || 'Gagal beli game.' });
+      // 2. Jika harga > 0 (Berbayar), tolak pembelian
+      // Kita beri sedikit delay agar seolah-olah sistem memproses
+      setTimeout(() => {
+        setMessage({ 
+          type: 'error', 
+          text: `❌ Gagal membeli ${game.nama}. Sistem pembayaran belum tersedia.` 
+        });
+        setBuyingId(null);
+      }, 1000); 
+      
+      // Bersihkan toast setelah beberapa detik dan langsung return agar tidak lanjut ke bawah
+      setTimeout(() => setMessage(null), 4000);
+      return; 
     }
+
     setBuyingId(null);
     setTimeout(() => setMessage(null), 3000);
   };
@@ -85,7 +107,7 @@ const Shop = () => {
                         onClick={() => handleBuy(game)}
                         disabled={buyingId === game.id}
                       >
-                        {buyingId === game.id ? 'Proses...' : 'Beli'}
+                        {buyingId === game.id ? 'Proses...' : (game.price === 0 ? 'Klaim' : 'Beli')}
                       </button>
                     )}
                   </div>
