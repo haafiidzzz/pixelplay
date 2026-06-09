@@ -113,6 +113,8 @@ const GenrePage = () => {
 
       {loading ? (
         <div className="genre-state">Loading...</div>
+      ) : games.length === 0 ? (
+        <div className="genre-state">Belum ada game untuk genre ini.</div>
       ) : (
         <div className="genre-page-grid">
           {games.length === 0 ? (

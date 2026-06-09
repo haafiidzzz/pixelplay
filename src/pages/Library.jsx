@@ -106,7 +106,7 @@ const Library = () => {
             <div key={p.game_id} className="library-card">
               <div className="library-card-cover">
                 <img
-                  src={`https://placehold.co/300x400/1a1a2e/00ff88?text=${encodeURIComponent(p.games?.nama || 'Game')}`}
+                 src={p.games?.thumbnail || `https://placehold.co/300x400/1a1a2e/00ff88?text=${encodeURIComponent(p.games?.nama || 'Game')}`}
                   alt={p.games?.nama}
                 />
               </div>
