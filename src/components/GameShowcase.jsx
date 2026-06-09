@@ -88,26 +88,26 @@ const GameShowcase = () => {
     );
   };
 
+  const imgSrc = (thumbnail, nama, size = '400x380') =>
+    thumbnail || `https://placehold.co/${size}/1a1a2e/00ff88?text=${encodeURIComponent(nama)}`;
+
   return (
     <section className="game-showcase">
       {toast && <div className={`showcase-toast ${toast.type}`}>{toast.text}</div>}
 
-      {/* CONFIRMATION MODAL */}
       {confirmGame && (
         <div className="modal-overlay" onClick={() => setConfirmGame(null)}>
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
             <div className="modal-game-img">
               <img
-                src={`https://placehold.co/300x160/1a1a2e/00ff88?text=${encodeURIComponent(confirmGame.nama)}`}
+                src={imgSrc(confirmGame.thumbnail, confirmGame.nama, '300x160')}
                 alt={confirmGame.nama}
               />
             </div>
             <h2 className="modal-title">{confirmGame.nama}</h2>
             <div className="modal-price">
-              Rp {Number(confirmGame.price).toLocaleString('id-ID')}
+              {confirmGame.price === 0 ? 'FREE' : `Rp ${Number(confirmGame.price).toLocaleString('id-ID')}`}
             </div>
-
-            {/* PAYMENT METHOD */}
             <div className="modal-payment">
               <p className="modal-payment-label">Metode Pembayaran</p>
               <div className="payment-options">
@@ -123,14 +123,9 @@ const GameShowcase = () => {
                 ))}
               </div>
             </div>
-
             <div className="modal-actions">
-              <button className="modal-btn-cancel" onClick={() => setConfirmGame(null)}>
-                Batal
-              </button>
-              <button className="modal-btn-confirm" onClick={handleConfirmBuy}>
-                Bayar Sekarang
-              </button>
+              <button className="modal-btn-cancel" onClick={() => setConfirmGame(null)}>Batal</button>
+              <button className="modal-btn-confirm" onClick={handleConfirmBuy}>Bayar Sekarang</button>
             </div>
           </div>
         </div>
@@ -151,7 +146,7 @@ const GameShowcase = () => {
           <div className="featured-row">
             {featured.map((game) => (
               <div key={game.id} className="featured-card game-card">
-                <img src={`https://placehold.co/400x380/1a1a2e/00ff88?text=${encodeURIComponent(game.nama)}`} alt={game.nama} />
+                <img src={imgSrc(game.thumbnail, game.nama, '400x380')} alt={game.nama} />
                 <div className="game-card-overlay">
                   <p className="game-card-name">{game.nama}</p>
                   <BuyButton game={game} />
@@ -159,10 +154,11 @@ const GameShowcase = () => {
               </div>
             ))}
           </div>
+
           <div className="small-grid">
             {small.map((game) => (
               <div key={game.id} className="small-card game-card">
-                <img src={`https://placehold.co/200x140/1a1a2e/00ff88?text=${encodeURIComponent(game.nama)}`} alt={game.nama} />
+                <img src={imgSrc(game.thumbnail, game.nama, '200x140')} alt={game.nama} />
                 <div className="game-card-overlay">
                   <p className="game-card-name">{game.nama}</p>
                   <BuyButton game={game} />
@@ -170,10 +166,11 @@ const GameShowcase = () => {
               </div>
             ))}
           </div>
+
           <div className="tiny-grid">
             {tiny.map((game) => (
               <div key={game.id} className="tiny-card game-card">
-                <img src={`https://placehold.co/200x120/1a1a2e/00ff88?text=${encodeURIComponent(game.nama)}`} alt={game.nama} />
+                <img src={imgSrc(game.thumbnail, game.nama, '200x120')} alt={game.nama} />
                 <div className="game-card-overlay">
                   <p className="game-card-name">{game.nama}</p>
                   <BuyButton game={game} />

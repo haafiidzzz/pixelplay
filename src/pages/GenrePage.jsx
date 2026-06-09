@@ -35,11 +35,16 @@ const GenrePage = () => {
     setLoading(true);
     const { data: allGames } = await shopService.getAllGames();
 
-    // Filter game berdasarkan slug genre (cocokkan ke kolom genre di DB kalau ada, fallback semua)
-    const filtered = (allGames || []).filter(
-      (g) => g.genre?.toLowerCase() === slug || g.slug?.includes(slug)
-    );
-    setGames(filtered.length > 0 ? filtered : allGames || []);
+    const filtered = (allGames || []).filter((g) => {
+      if (!g.genre) return false;
+      try {
+        const genres = typeof g.genre === 'string' ? JSON.parse(g.genre) : g.genre;
+        return Array.isArray(genres) && genres.includes(slug);
+      } catch {
+        return false;
+      }
+    });
+    setGames(filtered);
 
     if (user) {
       const { data: purchases } = await shopService.getUserPurchases(user.id);
@@ -90,6 +95,8 @@ const GenrePage = () => {
 
       {loading ? (
         <div className="genre-state">Loading...</div>
+      ) : games.length === 0 ? (
+        <div className="genre-state">Belum ada game untuk genre ini.</div>
       ) : (
         <div className="genre-page-grid">
           {games.map((game) => {
@@ -98,7 +105,7 @@ const GenrePage = () => {
               <div key={game.id} className="genre-game-card">
                 <div className="genre-game-cover">
                   <img
-                    src={`https://placehold.co/300x400/1a1a2e/00ff88?text=${encodeURIComponent(game.nama)}`}
+                    src={game.thumbnail || `https://placehold.co/300x400/1a1a2e/00ff88?text=${encodeURIComponent(game.nama)}`}
                     alt={game.nama}
                   />
                   {owned && <div className="genre-owned-badge">✓ OWNED</div>}
